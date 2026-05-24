@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: snapbridge-server
+    env: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_DIR
+        value: /var/data
+      - key: NODE_VERSION
+        value: "20.19.2"
+    disk:
+      name: snapbridge-data
+      mountPath: /var/data
+      sizeGB: 1
